@@ -1,7 +1,9 @@
-def print_hello(name):
-  print(f'Hello {name}')
+from banco import conta
 
-print_hello('world')
+teste = conta.Conta(1, 2, 0.00)
 
 if __name__ == "__main__":
-  print_hello('Gabriel')
+  teste.setSaldo(23.40)
+  print(teste.getSaldo())
+  teste.saca(40.00)
+  print(teste.getSaldo())
