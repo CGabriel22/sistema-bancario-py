@@ -1,51 +1,46 @@
 from banco import conta
 
+
 class Cliente(conta.Conta):
-  def __init__(self):
-    super().__init__()
-  
-  # private int id;
-  #   private String nome;
-  #   private String dataAniversario;
-  #   private String cpf;
-  #   private String telefone;
+    def __init__(self, id: int, nome: str, dataAniversario: str, cpf: str, telefone: str):
+        self.__id = id
+        self.__nome = nome
+        self.__dataAniversario = dataAniversario
+        self.__cpf = cpf
+        self.__telefone = telefone
+        super().__init__(1, id, 0.00)
 
-  #   public Cliente(int id, String nome, String dataAniversario, String cpf) {
-  #       this.id = id;
-  #       this.nome = nome;
-  #       this.dataAniversario = dataAniversario;
-  #       this.cpf = cpf;
-  #   }
+    @property
+    def telefone(self) -> float:
+        return self.__telefone
 
-  #   public void SetTelefone(String telefone) throws Exception {
-  #       if(telefone.length() <8) throw new Exception("Telefone não pode ser menor que 8 digitos");
-  #       this.telefone = telefone;
-  #   }
-    
-  #   public int getId() {
-  #       return this.id;
-  #   }
+    @telefone.setter
+    def telefone(self, telefone: str) -> None:
+        try:
+            if len(telefone) < 8:
+                raise ValueError('Telefone não pode ser menor que 8 digitos')
+            self.__telefone = telefone
+        except ValueError as err:
+            print(f"Erro: {err}")
 
-  #   public String getNome() {
-  #       return this.nome;
-  #   }
+    @property
+    def id(self) -> int:
+        return self.__id
 
-  #   public String getDataAniversario() {
-  #       return this.dataAniversario;
-  #   }
+    @property
+    def nome(self) -> str:
+        return self.__nome
 
-  #   public String getCpf() {
-  #       return this.cpf;
-  #   }
+    @property
+    def dataAniversario(self) -> str:
+        return self.__dataAniversario
 
-  #   public String getTelefone() {
-  #       return this.telefone;
-  #   }
+    @property
+    def cpf(self) -> str:
+        return self.__cpf
 
-  #   public Boolean verifica(int idDigitada) {
-  #       if (this.id != idDigitada) {
-  #           return false;
-  #       } else {
-  #           return true;
-  #       }
-  #   }
+    def verifica(self, idDigitada: int) -> bool:
+        if self.__id != idDigitada:
+            return False
+        else:
+            return True
